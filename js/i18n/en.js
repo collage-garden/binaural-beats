@@ -89,4 +89,7 @@ export default {
   // Errors
   needFile: 'Please select an audio file and wait for processing to complete',
   audioFail: 'Failed to start audio',
+
+  // Edition switch
+  editionSwitch: '🛒 See the Snake Oil Version',
 };

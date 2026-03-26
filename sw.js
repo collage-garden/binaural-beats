@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bb-v1';
+const CACHE_NAME = 'bb-v2';
 const ASSETS = [
   './',
   './index.html',
@@ -19,6 +19,8 @@ const ASSETS = [
   './js/i18n/i18n.js',
   './js/i18n/zh.js',
   './js/i18n/en.js',
+  './js/i18n/zh-marketing.js',
+  './js/i18n/en-marketing.js',
   './manifest.json'
 ];
 

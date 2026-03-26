@@ -131,7 +131,18 @@
     <button class="preset-btn" data-beat="30"><div class="freq">30 Hz</div><div class="desc">极限 · 粗糙</div></button>
     <button class="preset-btn" data-beat="42"><div class="freq">42 Hz</div><div class="desc">瓦解 · 对比</div></button>
   </div>
+
+  <!-- Marketing fake stats (only visible in marketing edition) -->
+  <div class="marketing-stats" id="marketingStats">
+    <div>🧠 <span class="stat-label" data-mstat="sync">脑波同步率:</span> <span class="stat-value" id="mstatSync">0%</span> <span class="stat-bar"><span class="stat-fill" id="mstatSyncBar" style="width:0%"></span></span></div>
+    <div>✨ <span class="stat-label" data-mstat="pineal">松果体激活度:</span> <span class="stat-value" id="mstatPineal">0%</span></div>
+    <div>🔮 <span class="stat-label" data-mstat="dimension">意识维度:</span> <span class="stat-value" id="mstatDimension">3.0D</span></div>
+    <div>💫 <span class="stat-label" data-mstat="energy">累计能量:</span> <span class="stat-value" id="mstatEnergy">0</span> <span class="stat-label" data-mstat="unit">光子单位</span></div>
+    <div><br>⚡ <span class="stat-label" id="mstatStatus" data-mstat="status">等待启动脑波校准...</span></div>
+  </div>
 </div>
+
+<button class="edition-btn" id="editionBtn">🛒 看看智商税版本</button>
 
 <script type="module" src="js/app.js"></script>
 <script>

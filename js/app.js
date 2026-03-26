@@ -7,7 +7,7 @@ import { Visualizer } from './ui/visualizer.js';
 import { InfoPanel } from './ui/info-panel.js';
 import { FileHandler } from './ui/file-handler.js';
 import { Controls } from './ui/controls.js';
-import { t, getLang, setLang, onLangChange } from './i18n/i18n.js';
+import { t, getLang, setLang, onLangChange, getEdition, setEdition, isMarketing, onEditionChange } from './i18n/i18n.js';
 
 class App {
   constructor() {
@@ -20,8 +20,11 @@ class App {
     this._bindControls();
     this._initPresets();
     this._initLangSwitcher();
+    this._initEditionSwitcher();
+    this._initMarketingStats();
 
     // 初始状态
+    this.applyEdition();
     this.applyI18n();
     this.updateParams();
     this.visualizer.clear();
@@ -75,6 +78,121 @@ class App {
       this.applyI18n();
       this.updateParams();
       this.visualizer.clear();
+    });
+  }
+
+  _initEditionSwitcher() {
+    const btn = document.getElementById('editionBtn');
+    btn.addEventListener('click', () => {
+      setEdition(isMarketing() ? 'science' : 'marketing');
+    });
+    onEditionChange(() => {
+      this.applyEdition();
+      this.applyI18n();
+      this.updateParams();
+      this.visualizer.clear();
+      // Start/stop marketing stats if playing
+      if (this.engine.isPlaying && isMarketing()) {
+        this._startMarketingStats();
+      } else {
+        this._stopMarketingStats();
+      }
+    });
+  }
+
+  applyEdition() {
+    const marketing = isMarketing();
+    document.body.classList.toggle('marketing', marketing);
+    document.getElementById('editionBtn').textContent = t('editionSwitch');
+  }
+
+  _initMarketingStats() {
+    this._mstatTimer = null;
+    this._mstatEnergy = 0;
+  }
+
+  _startMarketingStats() {
+    if (this._mstatTimer) return;
+    this._mstatEnergy = 0;
+    this._mstatTick();
+    this._mstatTimer = setInterval(() => this._mstatTick(), 2000);
+  }
+
+  _stopMarketingStats() {
+    if (this._mstatTimer) { clearInterval(this._mstatTimer); this._mstatTimer = null; }
+    const ids = ['mstatSync', 'mstatPineal', 'mstatDimension', 'mstatEnergy'];
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = id === 'mstatDimension' ? '3.0D' : '0';
+    });
+    const bar = document.getElementById('mstatSyncBar');
+    if (bar) bar.style.width = '0%';
+    const status = document.getElementById('mstatStatus');
+    if (status) {
+      const lang = getLang();
+      status.textContent = lang === 'zh' ? '等待启动脑波校准...' : 'Awaiting neural calibration...';
+    }
+  }
+
+  _mstatTick() {
+    if (!isMarketing() || !this.engine.isPlaying) return;
+    const lang = getLang();
+    const beat = parseFloat(this.controls.els.beat.value) || 10;
+
+    // Fake sync rate: converges to 80-95% with noise
+    const syncBase = 75 + Math.min(beat, 30) * 0.6;
+    const sync = Math.min(99.8, syncBase + (Math.random() * 8 - 2)).toFixed(1);
+    document.getElementById('mstatSync').textContent = sync + '%';
+    document.getElementById('mstatSyncBar').style.width = sync + '%';
+
+    // Fake pineal activation
+    const pineal = (70 + Math.random() * 25).toFixed(1);
+    document.getElementById('mstatPineal').textContent = pineal + '%';
+
+    // Fake dimension
+    const dim = (3.5 + Math.random() * 3.5).toFixed(1);
+    document.getElementById('mstatDimension').textContent = dim + 'D';
+
+    // Fake energy accumulator
+    this._mstatEnergy += Math.floor(100 + Math.random() * 300);
+    document.getElementById('mstatEnergy').textContent = this._mstatEnergy.toLocaleString();
+
+    // Fake status messages
+    const zhStatuses = [
+      '⚡ 脑波深度同步中...',
+      '📡 正在接收宇宙源头频率信号...',
+      '🧬 DNA 修复序列激活中...',
+      '🌟 意识维度正在提升...',
+      '🔮 松果体量子共振已建立...',
+      '💎 高维能量通道稳定传输中...',
+      '🧠 神经突触高速重塑中...',
+      '✨ 灵性能量场已达最佳状态...',
+    ];
+    const enStatuses = [
+      '⚡ Deep brain wave synchronization...',
+      '📡 Receiving universal source frequency signal...',
+      '🧬 DNA repair sequence activating...',
+      '🌟 Consciousness dimension ascending...',
+      '🔮 Pineal quantum resonance established...',
+      '💎 Higher-dimensional energy channel stable...',
+      '🧠 Neural synapses rapidly remodeling...',
+      '✨ Spiritual energy field at optimal state...',
+    ];
+    const statuses = lang === 'zh' ? zhStatuses : enStatuses;
+    document.getElementById('mstatStatus').textContent = statuses[Math.floor(Math.random() * statuses.length)];
+
+    // Marketing stat labels
+    const labels = document.querySelectorAll('[data-mstat]');
+    const mstatMap = lang === 'zh' ? {
+      sync: '脑波同步率:', pineal: '松果体激活度:', dimension: '意识维度:',
+      energy: '累计能量:', unit: '光子单位', status: ''
+    } : {
+      sync: 'Brain Wave Sync:', pineal: 'Pineal Activation:', dimension: 'Consciousness Dim:',
+      energy: 'Accumulated Energy:', unit: 'photon units', status: ''
+    };
+    labels.forEach(el => {
+      const key = el.getAttribute('data-mstat');
+      if (key !== 'status' && mstatMap[key]) el.textContent = mstatMap[key];
     });
   }
 
@@ -140,6 +258,9 @@ class App {
     presetBtns.forEach((el, i) => {
       if (presetKeys[i]) el.textContent = t(presetKeys[i]);
     });
+
+    // Edition button
+    document.getElementById('editionBtn').textContent = t('editionSwitch');
   }
 
   async togglePlay() {
@@ -147,6 +268,7 @@ class App {
       this.engine.stop();
       this.controls.setPlaying(false);
       this.visualizer.stop();
+      this._stopMarketingStats();
     } else {
       try {
         const params = this.controls.getParams(this.engine.currentModeName);
@@ -157,6 +279,7 @@ class App {
           this.engine.currentModeName
         );
         this.updateParams();
+        if (isMarketing()) this._startMarketingStats();
       } catch (e) {
         console.error('Start audio error:', e);
         alert(e.message || t('audioFail'));

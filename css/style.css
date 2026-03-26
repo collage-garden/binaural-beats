@@ -154,3 +154,154 @@ canvas {
   .play-btn { min-height: 48px; }
   .preset-btn { min-height: 44px; }
 }
+
+/* ======================================
+   Marketing Edition Theme (Satirical)
+   ====================================== */
+
+body.marketing {
+  background: linear-gradient(180deg, #0a0014 0%, #1a0030 40%, #0d0020 100%);
+}
+
+/* Starfield particle overlay */
+body.marketing::before {
+  content: '';
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.2), transparent),
+              radial-gradient(2px 2px at 40% 70%, rgba(212,175,55,0.15), transparent),
+              radial-gradient(1px 1px at 70% 20%, rgba(155,89,182,0.2), transparent),
+              radial-gradient(2px 2px at 90% 60%, rgba(255,255,255,0.15), transparent),
+              radial-gradient(1px 1px at 10% 80%, rgba(212,175,55,0.1), transparent),
+              radial-gradient(1px 1px at 60% 50%, rgba(255,255,255,0.12), transparent);
+  pointer-events: none; z-index: 0;
+}
+
+body.marketing > * { position: relative; z-index: 1; }
+
+body.marketing h1 { color: #d4af37; }
+body.marketing .subtitle { color: #b388d9; }
+
+body.marketing .warning {
+  background: linear-gradient(135deg, #2a1040, #1a0030);
+  border-color: #9b59b6; color: #d4af37;
+}
+
+body.marketing .container {
+  background: linear-gradient(180deg, #1a1035, #12082a);
+  border: 1px solid rgba(155,89,182,0.2);
+  box-shadow: 0 4px 32px rgba(155,89,182,0.15), 0 0 80px rgba(212,175,55,0.05);
+}
+
+body.marketing .lang-btn {
+  border-color: #3a2a5a; background: #2a1a42; color: #d4af37;
+}
+body.marketing .lang-btn:hover { background: #3a2a52; border-color: #d4af37; }
+
+body.marketing .tab-btn {
+  border-color: #3a2a5a; background: #2a1a42; color: #a88ac0;
+}
+body.marketing .tab-btn.active {
+  background: linear-gradient(135deg, #3a1a6a, #2a1050);
+  color: #d4af37; border-color: #d4af37;
+}
+body.marketing .tab-btn:hover { background: #3a2a52; color: #d4af37; }
+
+body.marketing .play-btn.off {
+  background: linear-gradient(135deg, #6a3aaf, #4a2090, #d4af37);
+  background-size: 200% 200%;
+  animation: marketingGlow 3s ease-in-out infinite;
+  color: #fff; text-shadow: 0 0 10px rgba(212,175,55,0.5);
+}
+body.marketing .play-btn.on {
+  background: linear-gradient(135deg, #9b59b6, #6a3aaf);
+  box-shadow: 0 0 20px rgba(155,89,182,0.4);
+}
+
+@keyframes marketingGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+body.marketing .control-label .name { color: #b388d9; }
+body.marketing .control-label .value { color: #d4af37; font-weight: 700; }
+
+body.marketing input[type="range"] { background: #2a1a42; }
+body.marketing input[type="range"]::-webkit-slider-thumb {
+  background: linear-gradient(135deg, #d4af37, #9b59b6);
+  box-shadow: 0 0 8px rgba(212,175,55,0.5);
+}
+
+body.marketing select {
+  background: #2a1a42; border-color: #3a2a5a; color: #d4af37;
+}
+
+body.marketing .file-area {
+  border-color: #3a2a5a; color: #8a6aaf;
+  background: rgba(42,26,66,0.3);
+}
+body.marketing .file-area:hover { border-color: #d4af37; color: #d4af37; }
+body.marketing .file-area.loaded { border-color: #d4af37; color: #d4af37; }
+
+body.marketing .ch-left { background: #2a1040; color: #d4af37; }
+body.marketing .ch-right { background: #2a1040; color: #b388d9; }
+
+body.marketing canvas { background: #0a0018; }
+
+body.marketing .info-panel {
+  background: linear-gradient(135deg, #1a0830, #0e0418);
+  border: 1px solid rgba(155,89,182,0.15);
+}
+
+body.marketing .preset-btn {
+  border-color: #3a2a5a; background: #2a1a42; color: #d4af37;
+}
+body.marketing .preset-btn:hover {
+  background: linear-gradient(135deg, #3a2060, #2a1050);
+  border-color: #d4af37; color: #fff;
+}
+body.marketing .preset-btn .freq { color: #d4af37; }
+body.marketing .preset-btn .desc { color: #b388d9; }
+
+body.marketing .band-delta { color: #d4af37; }
+body.marketing .band-theta { color: #9b59b6; }
+body.marketing .band-alpha { color: #d4af37; }
+body.marketing .band-beta { color: #e8c547; }
+body.marketing .band-collapse { color: #ff6aff; }
+
+/* Edition switch button */
+.edition-btn {
+  display: block; margin: 12px auto 0; padding: 8px 20px;
+  border-radius: 8px; border: 1px dashed #2a2a4a;
+  background: transparent; color: #666; font-size: 0.82em;
+  cursor: pointer; transition: all 0.2s;
+}
+.edition-btn:hover { border-color: #7eb8ff; color: #aaa; }
+
+body.marketing .edition-btn {
+  border-color: #3a2a5a; color: #8a6aaf;
+}
+body.marketing .edition-btn:hover {
+  border-color: #d4af37; color: #d4af37;
+}
+
+/* Marketing fake stats bar */
+.marketing-stats {
+  display: none; margin-top: 8px; padding: 10px 12px;
+  background: linear-gradient(135deg, #1a0830, #0e0418);
+  border: 1px solid rgba(155,89,182,0.15); border-radius: 8px;
+  font-size: 0.78em; line-height: 1.8; color: #b388d9;
+}
+body.marketing .marketing-stats { display: block; }
+
+.marketing-stats .stat-value { color: #d4af37; font-weight: 700; }
+.marketing-stats .stat-bar {
+  display: inline-block; width: 80px; height: 8px;
+  background: #1a0830; border-radius: 4px; vertical-align: middle;
+  margin-left: 4px; overflow: hidden;
+}
+.marketing-stats .stat-fill {
+  height: 100%; border-radius: 4px;
+  background: linear-gradient(90deg, #9b59b6, #d4af37);
+  transition: width 1s ease;
+}
+.marketing-stats .stat-label { color: #8a6aaf; }
