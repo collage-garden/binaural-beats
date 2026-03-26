@@ -1,0 +1,113 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #0a0a1a; color: #e0e0e0;
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+  padding: 20px;
+}
+
+h1 { color: #7eb8ff; margin-bottom: 4px; font-size: 1.7em; }
+.subtitle { color: #888; margin-bottom: 16px; font-size: 0.85em; }
+
+.warning {
+  background: #2a1a00; border: 1px solid #664400; border-radius: 8px;
+  padding: 10px 14px; margin-bottom: 16px; max-width: 640px;
+  font-size: 0.82em; color: #ffaa44; line-height: 1.5;
+}
+
+.container {
+  background: #12122a; border-radius: 16px; padding: 24px;
+  max-width: 640px; width: 100%; box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+/* Tabs */
+.tabs { display: flex; gap: 4px; margin-bottom: 18px; }
+.tab-btn {
+  flex: 1; padding: 10px 6px; border: 1px solid #2a2a4a; border-radius: 8px;
+  background: #1a1a32; color: #999; cursor: pointer; font-size: 0.9em;
+  transition: all 0.15s; text-align: center;
+}
+.tab-btn.active { background: #252560; color: #7eb8ff; border-color: #7eb8ff; font-weight: 600; }
+.tab-btn:hover { background: #252548; color: #ccc; }
+
+/* Play button */
+.play-btn {
+  width: 100%; padding: 14px; font-size: 1.2em; border: none; border-radius: 10px;
+  cursor: pointer; transition: all 0.2s; font-weight: 600; letter-spacing: 1px;
+}
+.play-btn.off { background: linear-gradient(135deg, #2a5298, #1e3c72); color: #fff; }
+.play-btn.on { background: linear-gradient(135deg, #c0392b, #96281b); color: #fff; }
+.play-btn:hover { transform: scale(1.01); filter: brightness(1.15); }
+
+/* Panels */
+.panel { display: none; margin: 16px 0; }
+.panel.active { display: block; }
+
+/* Controls */
+.controls { margin-top: 12px; }
+.control-group { margin-bottom: 14px; }
+.control-label {
+  display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;
+}
+.control-label .name { font-size: 0.88em; color: #aaa; }
+.control-label .value {
+  font-size: 1em; color: #7eb8ff; font-weight: 600; font-variant-numeric: tabular-nums;
+}
+
+input[type="range"] {
+  -webkit-appearance: none; width: 100%; height: 5px; border-radius: 3px;
+  background: #1e1e3a; outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
+  background: #7eb8ff; cursor: pointer; box-shadow: 0 0 6px rgba(126,184,255,0.3);
+}
+
+select {
+  width: 100%; padding: 8px 10px; border-radius: 6px; border: 1px solid #2a2a4a;
+  background: #1a1a32; color: #ccc; font-size: 0.9em; cursor: pointer;
+}
+
+/* File upload */
+.file-area {
+  border: 2px dashed #2a2a5a; border-radius: 10px; padding: 20px; text-align: center;
+  cursor: pointer; transition: all 0.2s; color: #666; font-size: 0.9em;
+}
+.file-area:hover { border-color: #7eb8ff; color: #aaa; }
+.file-area.loaded { border-color: #4adf8a; border-style: solid; color: #4adf8a; }
+.file-area.dragover { border-color: #7eb8ff; color: #aaa; }
+.file-area input { display: none; }
+
+/* Channel info */
+.channel-info {
+  display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8em; color: #666;
+}
+.channel-info span { padding: 3px 8px; border-radius: 4px; }
+.ch-left { background: #1a1a2e; color: #ff7eb3; }
+.ch-right { background: #1a1a2e; color: #7effd1; }
+
+canvas {
+  width: 100%; height: 80px; margin-top: 12px; border-radius: 8px; background: #0a0a18;
+}
+
+.info-panel {
+  margin-top: 14px; padding: 12px; background: #0e0e20; border-radius: 8px;
+  font-size: 0.82em; line-height: 1.7;
+}
+.band-delta { color: #b07aff; font-weight: 700; }
+.band-theta { color: #5aafff; font-weight: 700; }
+.band-alpha { color: #4adf8a; font-weight: 700; }
+.band-beta { color: #ffe44a; font-weight: 700; }
+.band-collapse { color: #ff6a6a; font-weight: 700; }
+
+/* Presets */
+.presets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 14px; }
+.preset-btn {
+  padding: 8px 4px; border: 1px solid #2a2a4a; border-radius: 6px;
+  background: #1a1a32; color: #ccc; cursor: pointer; font-size: 0.78em;
+  transition: all 0.15s; text-align: center; line-height: 1.3;
+}
+.preset-btn:hover { background: #252548; border-color: #7eb8ff; color: #fff; }
+.preset-btn .freq { font-weight: 700; color: #7eb8ff; font-size: 1.05em; }
+.preset-btn .desc { color: #888; font-size: 0.82em; }
