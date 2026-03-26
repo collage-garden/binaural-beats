@@ -70,10 +70,14 @@
 ## 技术实现
 
 - **纯前端单文件**，零依赖，零后端
-- Web Audio API（OscillatorNode / ScriptProcessorNode / ChannelMerger）
-- 手写 radix-2 Cooley-Tukey FFT + overlap-save 分块 Hilbert 变换
-- 实时 SSB 单边带调制（解析信号法），支持对称/单耳频移
+- Web Audio API（OscillatorNode / AudioWorklet / ChannelMerger）
+- SSB 调制运行于 AudioWorklet 音频渲染线程（ScriptProcessorNode 自动回退）
+- Web Worker 离线预处理：手写 radix-2 Cooley-Tukey FFT + overlap-save 分块 Hilbert 变换
+- 立体声独立处理，保留原始声像定位
+- 循环 crossfade 消除接缝爆音
+- Worker / Worklet 代码均以 Blob URL 内联，维持单文件部署
 - Canvas 实时差频包络可视化
+- 拖拽上传音频文件
 
 ## 工程探索历程
 
@@ -126,6 +130,27 @@ $$f_{R} - f_{L} = \Delta f \quad \text{（差频守恒）}$$
 ### 反思
 
 整个过程的模式是：**提出想法 → 实现 → 试听 → 发现问题 → 回溯到信号处理理论 → 找到更好的方案**。每一步的"不对劲"都有精确的物理/数学解释，这比任何教科书都有说服力。
+
+### 第六步：架构优化——把计算搬到正确的线程
+
+前五步实现了功能，但工程质量留有遗憾：
+
+- **Hilbert 预处理卡主线程**：虽然用了 `async/await` + `setTimeout(0)` 让出控制权，但 FFT 密集计算仍在主线程执行，UI 对于长音频仍有卡顿感。
+- **ScriptProcessorNode 已被标记为 deprecated**：它在主线程的音频回调中运行 SSB 调制逻辑，高负载时可能产生音频 glitch。
+- **单声道混缩丢失空间信息**：原始立体声音乐被混缩为 mono 后再做 Hilbert 变换，损失了立体声场。
+- **循环播放有接缝 click**：播放到末尾直接跳回开头，波形不连续产生爆音。
+
+解决方案是一组协同优化：
+
+1. **Web Worker 预处理**：将 FFT 和 Hilbert 变换的全部计算移入 Web Worker。Worker 代码以 Blob URL 内联（保持单文件部署），通过 `postMessage` + Transferable 传递大数组实现零拷贝通信。主线程在整个预处理过程中完全不阻塞。
+
+2. **AudioWorklet 实时处理**：将 SSB 调制从主线程的 ScriptProcessorNode 迁移到 AudioWorklet。Worklet 代码同样以 Blob URL 内联，通过 `audioWorklet.addModule()` 注册。SSB 运算在独立的音频渲染线程执行，不再与 UI 竞争 CPU 时间。保留 ScriptProcessorNode 作为自动回退（如果 AudioWorklet 不可用）。
+
+3. **立体声保持**：对每个声道独立计算 Hilbert 变换，SSB 调制时左耳输出左声道、右耳输出右声道（各自施加不同的频移量）。内存翻倍，但保留了原始录音的声像定位。
+
+4. **循环 Crossfade**：在播放末尾 2048 采样（~46ms）处开始与开头做线性交叉渐变，消除循环衔接的波形不连续。循环复位点跳到 `cfLen` 处以避免重复已渐入的内容。
+
+5. **拖拽上传**：为文件选择区域添加 `dragover`/`dragleave`/`drop` 事件处理。
 
 ## 参考文献
 
