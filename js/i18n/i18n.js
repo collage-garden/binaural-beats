@@ -70,4 +70,5 @@ if (savedEdition && EDITIONS.includes(savedEdition)) currentEdition = savedEditi
 
 // URL param override
 const urlEdition = new URLSearchParams(window.location.search).get('edition');
-if (urlEdition && EDITIONS.includes(urlEdition)) currentEdition = urlEdition;
+export const linkedEdition = !!(urlEdition && EDITIONS.includes(urlEdition));
+if (linkedEdition) currentEdition = urlEdition;

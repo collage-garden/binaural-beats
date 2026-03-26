@@ -106,8 +106,17 @@
 |------|------|---------|
 | 科学背景与诚实澄清 | [科学背景](docs/zh/science.md) | [Science](docs/en/science.md) |
 | 技术架构与设计模式 | [技术架构](docs/zh/architecture.md) | [Architecture](docs/en/architecture.md) |
-| 工程探索历程（8步演进） | [工程探索历程](docs/zh/engineering-journey.md) | [Engineering Journey](docs/en/engineering-journey.md) |
+| 工程探索历程（8步演进） | [工程探索历程](docs/zh/engineering-journey.md) | [Engineering Journey](docs/en/engineering-journey.md) || 讽刺版设计（营销版 + 神棍版） | [讽刺版设计](docs/zh/marketing-satire.md) | [Satire Design](docs/en/marketing-satire.md) |
 
+## 讽刺版本
+
+同一套音频引擎，三种完全不同的体验——证明包装如何塑造感知：
+
+| 版本 | 说明 | 直达链接 |
+|------|------|----------|
+| 🔬 科学版 | 客观、严谨、基于物理事实 | [默认版本](https://thomas-hiddenpeak.github.io/binaural-beats/) |
+| 🛒 营销版（智商税版） | 伪科学话术、虚假脑波统计 | [?edition=marketing](https://thomas-hiddenpeak.github.io/binaural-beats/?edition=marketing) |
+| 🔮 神棍版（灵修大师版） | 脉轮、昆达里尼、前世记忆、远程开光 | [?edition=mystic](https://thomas-hiddenpeak.github.io/binaural-beats/?edition=mystic) |
 ## 许可证
 
 MIT

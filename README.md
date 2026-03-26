@@ -107,6 +107,17 @@ Detailed documentation is available in both English and Chinese:
 | Science Background & Honest Clarification | [Science](docs/en/science.md) | [科学背景](docs/zh/science.md) |
 | Technical Architecture & Design Patterns | [Architecture](docs/en/architecture.md) | [技术架构](docs/zh/architecture.md) |
 | Engineering Journey (8-Step Evolution) | [Engineering Journey](docs/en/engineering-journey.md) | [工程探索历程](docs/zh/engineering-journey.md) |
+| Satire Editions (Marketing + Mystic) | [Satire Design](docs/en/marketing-satire.md) | [讽刺版设计](docs/zh/marketing-satire.md) |
+
+## Satire Editions
+
+The same audio engine, three completely different experiences — proving that packaging shapes perception:
+
+| Edition | Description | Direct Link |
+|---------|-------------|-------------|
+| 🔬 Science | Factual, objective, physics-based | [Default](https://thomas-hiddenpeak.github.io/binaural-beats/) |
+| 🛒 Marketing ("Snake Oil") | Pseudo-science buzzwords, fake neural stats | [?edition=marketing](https://thomas-hiddenpeak.github.io/binaural-beats/?edition=marketing) |
+| 🔮 Mystic ("Spiritual Guru") | Chakras, kundalini, past lives, remote blessing | [?edition=mystic](https://thomas-hiddenpeak.github.io/binaural-beats/?edition=mystic) |
 
 ## License
 

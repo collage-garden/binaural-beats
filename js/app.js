@@ -7,7 +7,7 @@ import { Visualizer } from './ui/visualizer.js';
 import { InfoPanel } from './ui/info-panel.js';
 import { FileHandler } from './ui/file-handler.js';
 import { Controls } from './ui/controls.js';
-import { t, getLang, setLang, onLangChange, getEdition, setEdition, isMarketing, isMystic, onEditionChange } from './i18n/i18n.js';
+import { t, getLang, setLang, onLangChange, getEdition, setEdition, isMarketing, isMystic, onEditionChange, linkedEdition } from './i18n/i18n.js';
 
 class App {
   constructor() {
@@ -118,8 +118,12 @@ class App {
     const edition = getEdition();
     document.body.classList.toggle('marketing', edition === 'marketing');
     document.body.classList.toggle('mystic', edition === 'mystic');
-    document.getElementById('editionBtn1').textContent = t('editionSwitch1');
-    document.getElementById('editionBtn2').textContent = t('editionSwitch2');
+    if (linkedEdition) {
+      document.querySelector('.edition-btns').style.display = 'none';
+    } else {
+      document.getElementById('editionBtn1').textContent = t('editionSwitch1');
+      document.getElementById('editionBtn2').textContent = t('editionSwitch2');
+    }
   }
 
   _initMarketingStats() {
@@ -334,6 +338,7 @@ class App {
 
   applyI18n() {
     const lang = getLang();
+    document.title = t('title');
     document.getElementById('langBtn').textContent = lang === 'zh' ? 'EN' : '中文';
 
     // Static text via data-i18n
@@ -396,8 +401,10 @@ class App {
     });
 
     // Edition buttons
-    document.getElementById('editionBtn1').textContent = t('editionSwitch1');
-    document.getElementById('editionBtn2').textContent = t('editionSwitch2');
+    if (!linkedEdition) {
+      document.getElementById('editionBtn1').textContent = t('editionSwitch1');
+      document.getElementById('editionBtn2').textContent = t('editionSwitch2');
+    }
 
     // Fake stats labels (update for current language)
     this._updateMarketingLabels();
