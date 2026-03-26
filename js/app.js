@@ -29,6 +29,7 @@ class App {
     this.applyI18n();
     this.updateParams();
     this.visualizer.clear();
+    document.body.classList.remove('init-pending');
   }
 
   _initFileHandler() {

@@ -13,15 +13,23 @@
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="init-pending">
 <script>
-// Immediately apply edition body class to prevent FOUC
+// Apply edition class/title before first paint to prevent init flash
 (function(){
-  var e = new URLSearchParams(location.search).get('edition')
-       || localStorage.getItem('bb-edition');
-  if (e === 'marketing' || e === 'mystic') document.body.className = e;
-  if (new URLSearchParams(location.search).get('edition'))
+  var params = new URLSearchParams(location.search);
+  var edition = params.get('edition') || localStorage.getItem('bb-edition') || 'science';
+  var lang = localStorage.getItem('bb-lang') || 'zh';
+  var titleMap = {
+    science: { zh: '双耳拍体验器 Pro', en: 'Binaural Beat Explorer Pro' },
+    marketing: { zh: 'NeuroTune™ 脑波大师', en: 'NeuroTune™ Brain Wave Master' },
+    mystic: { zh: '天音灵频™ 觉醒法器', en: 'Divine Frequency™ Awakening Portal' }
+  };
+  if (edition === 'marketing' || edition === 'mystic') document.body.classList.add(edition);
+  document.title = (titleMap[edition] && titleMap[edition][lang]) || titleMap.science.zh;
+  if (params.get('edition')) {
     document.documentElement.dataset.linked = '1';
+  }
 })();
 </script>
 
