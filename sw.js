@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bb-v3';
+const CACHE_NAME = 'bb-v4';
 const ASSETS = [
   './',
   './index.html',
@@ -43,7 +43,15 @@ self.addEventListener('activate', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
+  const req = e.request;
+  // Navigation requests (e.g. ?edition=mystic): ignore query params, serve cached index.html
+  if (req.mode === 'navigate') {
+    e.respondWith(
+      caches.match('./index.html').then(cached => cached || fetch(req))
+    );
+    return;
+  }
   e.respondWith(
-    caches.match(e.request).then(cached => cached || fetch(e.request))
+    caches.match(req).then(cached => cached || fetch(req))
   );
 });
