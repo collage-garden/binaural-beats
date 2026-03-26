@@ -2,7 +2,7 @@
 
 一个开源的交互式双耳拍体验工具。基于 Web Audio API，纯前端，零依赖，浏览器直接运行。
 
-**👉 [在线体验](https://thomas.github.io/binaural-beats/)**
+**👉 [在线体验](https://thomas-hiddenpeak.github.io/binaural-beats/)**
 
 > **必须佩戴耳机使用。** 双耳拍的原理要求左右耳分别接收不同频率的信号，用扬声器无效。
 
