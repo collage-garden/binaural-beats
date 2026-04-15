@@ -2,7 +2,7 @@
 
 An open-source, interactive binaural beats experience tool. Pure frontend, zero dependencies, runs directly in the browser.
 
-**👉 [Live Demo](https://thomas-hiddenpeak.github.io/binaural-beats/)** · [中文版 README](README.zh.md)
+**👉 [Live Demo](https://collage-garden.github.io/binaural-beats/)** · [中文版 README](README.zh.md)
 
 > **Headphones required.** Binaural beats rely on delivering different frequencies to each ear — speakers won't work.
 
@@ -45,7 +45,7 @@ This tool lets you experience and explore this phenomenon firsthand.
 
 ## Quick Start
 
-1. Open the [Live Demo](https://thomas-hiddenpeak.github.io/binaural-beats/) (Chrome / Edge / Safari recommended)
+1. Open the [Live Demo](https://collage-garden.github.io/binaural-beats/) (Chrome / Edge / Safari recommended)
 2. **Put on headphones**
 3. Choose a mode and press Start
 4. Adjust beat frequency, distribution strategy, and other parameters
@@ -115,9 +115,9 @@ The same audio engine, three completely different experiences — proving that p
 
 | Edition | Description | Direct Link |
 |---------|-------------|-------------|
-| 🔬 Science | Factual, objective, physics-based | [Default](https://thomas-hiddenpeak.github.io/binaural-beats/) |
-| 🛒 Marketing ("Snake Oil") | Pseudo-science buzzwords, fake neural stats | [?edition=marketing](https://thomas-hiddenpeak.github.io/binaural-beats/?edition=marketing) |
-| 🔮 Mystic ("Spiritual Guru") | Chakras, kundalini, past lives, remote blessing | [?edition=mystic](https://thomas-hiddenpeak.github.io/binaural-beats/?edition=mystic) |
+| 🔬 Science | Factual, objective, physics-based | [Default](https://collage-garden.github.io/binaural-beats/) |
+| 🛒 Marketing ("Snake Oil") | Pseudo-science buzzwords, fake neural stats | [?edition=marketing](https://collage-garden.github.io/binaural-beats/?edition=marketing) |
+| 🔮 Mystic ("Spiritual Guru") | Chakras, kundalini, past lives, remote blessing | [?edition=mystic](https://collage-garden.github.io/binaural-beats/?edition=mystic) |
 
 ## License
 

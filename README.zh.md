@@ -2,7 +2,7 @@
 
 开源的交互式双耳拍体验工具。纯前端，零依赖，浏览器直接运行。
 
-**👉 [在线体验](https://thomas-hiddenpeak.github.io/binaural-beats/)** · [English](README.md)
+**👉 [在线体验](https://collage-garden.github.io/binaural-beats/)** · [English](README.md)
 
 > **必须佩戴耳机使用。** 双耳拍的原理要求左右耳分别接收不同频率的信号，用扬声器无效。
 
@@ -45,7 +45,7 @@
 
 ## 快速开始
 
-1. 打开[在线体验](https://thomas-hiddenpeak.github.io/binaural-beats/)（推荐 Chrome / Edge / Safari）
+1. 打开[在线体验](https://collage-garden.github.io/binaural-beats/)（推荐 Chrome / Edge / Safari）
 2. **佩戴耳机**
 3. 选择模式，点击开始
 4. 调节差频、频率分配等参数，感受搏动变化
@@ -114,9 +114,9 @@
 
 | 版本 | 说明 | 直达链接 |
 |------|------|----------|
-| 🔬 科学版 | 客观、严谨、基于物理事实 | [默认版本](https://thomas-hiddenpeak.github.io/binaural-beats/) |
-| 🛒 营销版（智商税版） | 伪科学话术、虚假脑波统计 | [?edition=marketing](https://thomas-hiddenpeak.github.io/binaural-beats/?edition=marketing) |
-| 🔮 神棍版（灵修大师版） | 脉轮、昆达里尼、前世记忆、远程开光 | [?edition=mystic](https://thomas-hiddenpeak.github.io/binaural-beats/?edition=mystic) |
+| 🔬 科学版 | 客观、严谨、基于物理事实 | [默认版本](https://collage-garden.github.io/binaural-beats/) |
+| 🛒 营销版（智商税版） | 伪科学话术、虚假脑波统计 | [?edition=marketing](https://collage-garden.github.io/binaural-beats/?edition=marketing) |
+| 🔮 神棍版（灵修大师版） | 脉轮、昆达里尼、前世记忆、远程开光 | [?edition=mystic](https://collage-garden.github.io/binaural-beats/?edition=mystic) |
 ## 许可证
 
 MIT
